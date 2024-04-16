@@ -101,6 +101,7 @@ def get_timeseries(data,prop):
   return df
 
 def get_weeks_first_last(df):
+  df = df.T.copy()
   first = []
   last = []
   for col in df.columns:
