@@ -115,3 +115,19 @@ def get_weeks_first_last(df):
     }
   )
   return df_out
+
+def plot_vals_per_player(df,vals:list[tuple[str:str]],team_data_df:pd.DataFrame,colours:list[str])->go.Figure:
+  fig = go.Figure()
+  players = entries_to_players(df.entry)
+  fig = go.Figure()
+  for i in range(len(vals)):
+    fig.add_trace(go.Bar(
+      x=players,
+      y=df[vals[i][0]],
+      name=vals[i][1],
+      marker_color=colours[i]
+    ))
+  return fig
+
+def entries_to_players(entries:pd.Series):
+  return [id_to_name(x) for x in entries]
